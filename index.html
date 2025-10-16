@@ -66,20 +66,21 @@
     transition:box-shadow 0.5s ease;
   }
 
-  /* Portadas */
+  /* Portadas: fondo rojo */
   .cover{
-    background:linear-gradient(145deg,#b71c1c,#e53935);
+    background:linear-gradient(145deg,#a60000,#ff2b2b);
     color:white;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     text-align:center;
-    box-shadow:0 5px 20px rgba(0,0,0,0.4);
+    box-shadow:0 5px 25px rgba(0,0,0,0.4);
+    font-size:1.2rem;
   }
 
   .cover h1{
-    font-size:2.2rem;
+    font-size:2.3rem;
     margin-bottom:10px;
   }
 
@@ -87,35 +88,47 @@
   .page{
     background:linear-gradient(145deg,#bbdefb,#e3f2fd);
     color:#000;
-    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    box-shadow:0 4px 12px rgba(0,0,0,0.25);
   }
 
   .face.left{transform:rotateY(180deg);}
-  .folio{position:absolute;bottom:10px;width:100%;text-align:center;font-size:0.8rem;opacity:0.5;}
+  .folio{
+    position:absolute;
+    bottom:10px;
+    width:100%;
+    text-align:center;
+    font-size:0.8rem;
+    opacity:0.5;
+  }
 
-  /* Botones */
+  /* Centrar los botones */
   .controls{
     display:flex;
-    gap:10px;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+    margin-top:25px;
   }
 
   button{
-    padding:10px 20px;
-    border:1px solid #333;
-    background:#fff;
+    padding:10px 25px;
+    border:none;
+    background:#d32f2f;
+    color:white;
     cursor:pointer;
-    border-radius:8px;
+    border-radius:10px;
     font-size:1rem;
-    transition:background .2s, transform .2s, box-shadow .2s;
+    font-weight:bold;
+    box-shadow:0 3px 10px rgba(0,0,0,0.3);
+    transition:all 0.3s ease;
   }
 
   button:hover{
-    background:#f3f3f3;
+    background:#b71c1c;
     transform:scale(1.05);
-    box-shadow:0 2px 6px rgba(0,0,0,0.2);
   }
 
-  /* Efectos 3D al pasar página */
+  /* Efecto de cambio de página */
   .sheet.flipped{
     transform:rotateY(-180deg);
     box-shadow:-10px 0 25px rgba(0,0,0,0.3);
@@ -124,7 +137,6 @@
   .sheet:not(.flipped):hover{
     box-shadow:10px 0 25px rgba(0,0,0,0.25);
   }
-
 </style>
 </head>
 <body>
@@ -164,14 +176,14 @@
   const coverFront = () => {
     const c = document.createElement("div");
     c.className = "cover";
-    c.innerHTML = "<h1>Feliz 9 Meses Mi Amor ❤️</h1><p>Con todo mi cariño para ti 💌</p>";
+    c.innerHTML = "<h1>💖 Feliz 9 Meses Mi Amor 💖</h1><p>Con todo mi cariño para ti 💌</p>";
     return c;
   };
 
   const coverBack = () => {
     const c = document.createElement("div");
     c.className = "cover";
-    c.innerHTML = "<p>🐣: ¿A qué le tienes miedo?<br>🗣️: Nooo, a nada 💕</p>";
+    c.innerHTML = "<h1>Te Amo Mucho ❤️</h1><p>🐣: ¿A qué le tienes miedo?<br>🗣️: Nooo, a nada 💕</p>";
     return c;
   };
 
