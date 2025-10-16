@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Felices 9 Meses Mi Amor ❤️‍🩹✨</title>
+<title>Felices 10 Meses Mi Amor❤️‍🩹✨</title>
 <style>
   :root{
     --book-w: 960px;
@@ -17,13 +17,40 @@
   *{box-sizing:border-box;margin:0;padding:0;}
   html,body{
     height:100%;
-    background:#f9f9f9;
     font-family:serif;
     display:flex;
     justify-content:center;
     align-items:center;
     flex-direction:column;
     gap:20px;
+    overflow:hidden;
+    position:relative;
+  }
+
+  /* 🌌 Fondo galáctico animado con estrellas */
+  body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:-2;
+    background:radial-gradient(circle at 20% 30%, #ff4081 0%, transparent 25%),
+               radial-gradient(circle at 80% 70%, #7c4dff 0%, transparent 25%),
+               radial-gradient(circle at 50% 50%, #2196f3 0%, #000014 100%);
+    background-size:200% 200%;
+    animation:moveGalaxy 15s ease-in-out infinite alternate;
+  }
+
+  @keyframes moveGalaxy{
+    0%{background-position:0% 0%;}
+    100%{background-position:100% 100%;}
+  }
+
+  /* Canvas de estrellas */
+  #stars{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    background:transparent;
   }
 
   .scene{
@@ -147,6 +174,9 @@
 </head>
 <body>
 
+<!-- 🌟 Fondo estrellado -->
+<canvas id="stars"></canvas>
+
 <div class="scene">
   <div class="book" id="book"></div>
 </div>
@@ -157,6 +187,43 @@
 </div>
 
 <script>
+/* 🌟 Generador de estrellas animadas */
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+let stars = [];
+
+function resizeCanvas(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
+
+for(let i=0;i<150;i++){
+  stars.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    size: Math.random() * 2,
+    speed: 0.05 + Math.random() * 0.5,
+    alpha: Math.random()
+  });
+}
+
+function animateStars(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(let s of stars){
+    ctx.beginPath();
+    ctx.fillStyle = `rgba(255,255,255,${s.alpha})`;
+    ctx.arc(s.x,s.y,s.size,0,Math.PI*2);
+    ctx.fill();
+    s.y += s.speed;
+    if(s.y > canvas.height) s.y = 0;
+  }
+  requestAnimationFrame(animateStars);
+}
+animateStars();
+
+/* 📖 Código del libro */
 (function(){
   const mensajes = {
     1:"Holiis soy yo de nuevo jiji 👀🥺❤️ Oye princesa recuerdas cuando fue la primera vez que nos encontramos esa primera vez donde ninguno de los dos sabía que llegaríamos a tener una relación tan bonish ❤️‍🩹🫶✨.",
