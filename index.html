@@ -66,22 +66,29 @@
     transition:box-shadow 0.5s ease;
   }
 
-  /* Portadas: fondo rojo */
+  /* Portadas */
   .cover{
-    background:linear-gradient(145deg,#a60000,#ff2b2b);
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
     color:white;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     text-align:center;
-    box-shadow:0 5px 25px rgba(0,0,0,0.4);
     font-size:1.2rem;
+    box-shadow:0 5px 25px rgba(0,0,0,0.4);
   }
 
-  .cover h1{
-    font-size:2.3rem;
-    margin-bottom:10px;
+  /* Portada principal (corazón dorado) */
+  .cover.front {
+    background-image:url('https://i.imgur.com/k9F2zRl.jpeg');
+  }
+
+  /* Contraportada (I LOVE YOU rojo) */
+  .cover.back {
+    background-image:url('https://i.imgur.com/BRzZqgM.jpeg');
   }
 
   /* Páginas interiores */
@@ -101,7 +108,7 @@
     opacity:0.5;
   }
 
-  /* Centrar los botones */
+  /* Botones */
   .controls{
     display:flex;
     justify-content:center;
@@ -128,7 +135,6 @@
     transform:scale(1.05);
   }
 
-  /* Efecto de cambio de página */
   .sheet.flipped{
     transform:rotateY(-180deg);
     box-shadow:-10px 0 25px rgba(0,0,0,0.3);
@@ -175,15 +181,13 @@
 
   const coverFront = () => {
     const c = document.createElement("div");
-    c.className = "cover";
-    c.innerHTML = "<h1>💖 Feliz 9 Meses Mi Amor 💖</h1><p>Con todo mi cariño para ti 💌</p>";
+    c.className = "cover front";
     return c;
   };
 
   const coverBack = () => {
     const c = document.createElement("div");
-    c.className = "cover";
-    c.innerHTML = "<h1>Te Amo Mucho ❤️</h1><p>🐣: ¿A qué le tienes miedo?<br>🗣️: Nooo, a nada 💕</p>";
+    c.className = "cover back";
     return c;
   };
 
