@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Felices 9 Meses Mi Amor ❤️‍🩹✨</title>
+<title>Libro del Amor 💖</title>
 <style>
   :root{
     --book-w: 960px;
@@ -17,7 +17,7 @@
   *{box-sizing:border-box;margin:0;padding:0;}
   html,body{
     height:100%;
-    background:#f2f2f2;
+    background:#f9f9f9;
     font-family:serif;
     display:flex;
     justify-content:center;
@@ -35,7 +35,6 @@
     height:var(--book-h);
     position:relative;
     transform-style:preserve-3d;
-    transition:transform 0.9s ease;
   }
 
   .sheet{
@@ -46,6 +45,7 @@
     left:50%;
     transform-origin:left center;
     transform-style:preserve-3d;
+    transition:transform 1s ease, box-shadow 0.6s ease;
     border-radius:var(--radius);
   }
 
@@ -53,31 +53,47 @@
     position:absolute;
     inset:0;
     backface-visibility:hidden;
-    border:1px solid #ccc;
-    background:white;
     border-radius:var(--radius);
+    border:1px solid rgba(0,0,0,0.15);
     display:flex;
     justify-content:center;
     align-items:center;
     padding:40px;
     text-align:center;
     line-height:1.6;
+    font-size:1.1rem;
+    box-shadow:inset 0 0 15px rgba(0,0,0,0.1);
+    transition:box-shadow 0.5s ease;
   }
 
-  .face.left{transform:rotateY(180deg);}
-  .folio{position:absolute;bottom:10px;width:100%;text-align:center;font-size:0.8rem;opacity:0.5;}
+  /* Portadas */
   .cover{
+    background:linear-gradient(145deg,#b71c1c,#e53935);
+    color:white;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    font-size:2rem;
-    background:#fff;
-    border:1px solid #ccc;
     text-align:center;
-    padding:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.4);
   }
 
+  .cover h1{
+    font-size:2.2rem;
+    margin-bottom:10px;
+  }
+
+  /* Páginas interiores */
+  .page{
+    background:linear-gradient(145deg,#bbdefb,#e3f2fd);
+    color:#000;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  .face.left{transform:rotateY(180deg);}
+  .folio{position:absolute;bottom:10px;width:100%;text-align:center;font-size:0.8rem;opacity:0.5;}
+
+  /* Botones */
   .controls{
     display:flex;
     gap:10px;
@@ -88,13 +104,25 @@
     border:1px solid #333;
     background:#fff;
     cursor:pointer;
-    border-radius:6px;
+    border-radius:8px;
     font-size:1rem;
-    transition:background .2s;
+    transition:background .2s, transform .2s, box-shadow .2s;
   }
 
   button:hover{
-    background:#e6e6e6;
+    background:#f3f3f3;
+    transform:scale(1.05);
+    box-shadow:0 2px 6px rgba(0,0,0,0.2);
+  }
+
+  /* Efectos 3D al pasar página */
+  .sheet.flipped{
+    transform:rotateY(-180deg);
+    box-shadow:-10px 0 25px rgba(0,0,0,0.3);
+  }
+
+  .sheet:not(.flipped):hover{
+    box-shadow:10px 0 25px rgba(0,0,0,0.25);
   }
 
 </style>
@@ -128,7 +156,7 @@
 
   function makePage(n){
     const p = document.createElement("div");
-    p.className = "face";
+    p.className = "face page";
     p.innerHTML = `<div>${mensajes[n] || ""}</div><div class="folio">${n}</div>`;
     return p;
   }
@@ -136,14 +164,14 @@
   const coverFront = () => {
     const c = document.createElement("div");
     c.className = "cover";
-    c.innerHTML = "<h1>Feliz 9 Meses Mi Amor</h1><p>Con cariño para ti 💌</p>";
+    c.innerHTML = "<h1>Feliz 9 Meses Mi Amor ❤️</h1><p>Con todo mi cariño para ti 💌</p>";
     return c;
   };
 
   const coverBack = () => {
     const c = document.createElement("div");
     c.className = "cover";
-    c.innerHTML = "<p>🐣: a qué le tienes miedo?<br>🗣️: nooo a nada.</p>";
+    c.innerHTML = "<p>🐣: ¿A qué le tienes miedo?<br>🗣️: Nooo, a nada 💕</p>";
     return c;
   };
 
@@ -178,7 +206,7 @@
 
   function nextPage(){
     if(pointer < sheets.length){
-      sheets[pointer].style.transform = "rotateY(-180deg)";
+      sheets[pointer].classList.add("flipped");
       pointer++;
     }
   }
@@ -186,7 +214,7 @@
   function prevPage(){
     if(pointer > 0){
       pointer--;
-      sheets[pointer].style.transform = "rotateY(0deg)";
+      sheets[pointer].classList.remove("flipped");
     }
   }
 
@@ -196,4 +224,4 @@
 </script>
 
 </body>
-  </html>
+</html>
